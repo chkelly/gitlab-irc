@@ -9,9 +9,9 @@ Installation
 ```bash
 git clone git@github.com:chkelly/gitlab-irc.git;
 cd gitlab-irc;
-mv config.yml.example config.yml;
+mv config/config.yml.example config/config.yml;
 #Edit the config file
-vim config.yml
+vim config/config.yml
 ```
 
 You can use the config.yml.example file that is provided to configure your connection.
@@ -24,6 +24,6 @@ unicorn -D
 
 You can then configure your post commit web hooks to
 ```bash
-localhost:8080/commit
+http://localhost:8080/commit
 ```
 

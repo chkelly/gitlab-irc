@@ -1,4 +1,4 @@
-require "./gitlab-irc.rb"
+require "./lib/gitlab-irc.rb"
 
 set :run, false
 set :raise_errors, true

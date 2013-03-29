@@ -4,7 +4,7 @@ require 'json'
 require 'yaml'
 require 'cinch'
 
-$config = YAML.load(File.read('config.yml'))
+$config = YAML.load(File.read('./config/config.yml'))
 $bot = Cinch::Bot.new do
   configure do |c|
     c.server = $config['IRC_HOST']
@@ -14,8 +14,9 @@ $bot = Cinch::Bot.new do
         c.ssl.use = true
     end
     c.nick = $config['IRC_NICK']
-    c.user = 'gitlab'
-    c.realname = 'gitlab'
+    c.user = $config['IRC_NICK']
+    c.realname = $config['IRC_REALNAME']
+    c.verbose = $config['DEBUG']
   end
 
   on :message, "hello" do |m|
