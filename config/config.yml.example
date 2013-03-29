@@ -1,0 +1,7 @@
+IRC_HOST: 'irc.freenode.com'
+IRC_PORT: 6667
+SSL: false
+IRC_CHANNELS: ['#gitlab-irc']
+IRC_NICK: 'GitLab'
+IRC_REALNAME: 'GitLabBot'
+DEBUG: false
