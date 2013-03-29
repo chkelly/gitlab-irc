@@ -37,7 +37,8 @@ end
 post '/commit' do
     json = JSON.parse(request.env["rack.input"].read)
     json['commits'].each do |commit|
-        say "[#{json['repository']['name'].capitalize}] #{commit['author']['name']} | #{commit['message']}"
+        commit_message = commit['message'].gsub(/\n/," ")
+        say "[#{json['repository']['name'].capitalize}] #{commit['author']['name']} | #{commit_message}"
         say "           View Commit: #{commit['url']}"
     end
 end
