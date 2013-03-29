@@ -19,7 +19,7 @@ You can use the config.yml.example file that is provided to configure your conne
 Once completed, you can start the server using the following commands
 ```bash
 cd gitlab-irc;
-unicorn -D
+unicorn -c config/unicorn.conf -D
 ```
 
 You can then configure your post commit web hooks to
