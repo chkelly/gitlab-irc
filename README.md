@@ -7,7 +7,7 @@ Installation
 ------------
 
 ```bash
-git clone git@github.com:chkelly/gitlab-irc.git;
+git clone https://github.com/chkelly/gitlab-irc.git;
 cd gitlab-irc;
 mv config/config.yml.example config/config.yml;
 #Edit the config file
