@@ -36,7 +36,7 @@ cd gitlab-irc;
 bundle exec unicorn -c config/unicorn.conf -D
 ```
 
-You can then configure your post commit web hooks to
+Within Gitlab CE, select a project, then go to Settings -> Hooks, and enter in the below. Check all the boxes.
 ```bash
 http://localhost:5000
 ```
