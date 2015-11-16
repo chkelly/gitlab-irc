@@ -29,13 +29,13 @@ Thread.new do
 end
 
 def say(msg)
-    $config['IRC_CHANNELS'].each do |channel|
-        $bot.Channel(channel).send msg
-    end
+        $bot.channel_list.each do |channel|
+          channel.send msg
+        end
 end
 
 post '/commit' do
-    json = JSON.parse(request.env["rack.input"].read)
+    json = JSON.parse(request.body.read.to_s)
     json['commits'].each do |commit|
         commit_message = commit['message'].gsub(/\n/," ")
         say "[#{json['repository']['name'].capitalize}] #{commit['author']['name']} | #{commit_message}"
