@@ -30,7 +30,7 @@ unicorn -c config/unicorn.conf -D
 
 You can then configure your post commit web hooks to
 ```bash
-http://localhost:5000/commit
+http://localhost:5000
 ```
 
 Troubleshooting
