@@ -3,12 +3,12 @@ require 'sinatra'
 require 'json'
 require 'yaml'
 require 'cinch'
+require 'cinch/plugins/identify'
 
 $config = YAML.load(File.read('./config/config.yml'))
 $bot = Cinch::Bot.new do
   configure do |c|
     c.server = $config['IRC_HOST']
-    c.channels = $config['IRC_CHANNELS']
     c.port = $config['IRC_PORT']
     if $config['SSL'] == true
         c.ssl.use = true
@@ -16,6 +16,16 @@ $bot = Cinch::Bot.new do
     c.nick = $config['IRC_NICK']
     c.user = $config['IRC_NICK']
     c.realname = $config['IRC_REALNAME']
+    if $config['IRC_USER_NAME'] && $config['IRC_USER_PASSWORD']
+      c.plugins.plugins = [Cinch::Plugins::Identify]
+      c.plugins.options[Cinch::Plugins::Identify] = {
+        :username => $config['IRC_USER_NAME'],
+        :password => $config['IRC_USER_PASSWORD'],
+        :type     => :nickserv
+      }
+    end
+    c.channels = $config['IRC_CHANNELS']
+    c.delay_joins = 10
     c.verbose = $config['DEBUG']
   end
 

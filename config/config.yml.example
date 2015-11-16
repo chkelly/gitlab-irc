@@ -4,4 +4,7 @@ SSL: false
 IRC_CHANNELS: ['#gitlab-irc']
 IRC_NICK: 'GitLab'
 IRC_REALNAME: 'GitLabBot'
+# Uncomment the below two lines to enable nickserv identification.
+# IRC_USER_NAME: 'Username'
+# IRC_USER_PASSWORD: 'Secret_Password'
 DEBUG: false
