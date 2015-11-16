@@ -1,8 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    cinch (2.0.4)
-    json (1.7.7)
+    cinch (2.3.1)
     kgio (2.8.0)
     rack (1.5.2)
     rack-protection (1.5.0)
@@ -22,7 +21,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cinch
-  json
+  cinch (= 2.3.1)
   sinatra
   unicorn
