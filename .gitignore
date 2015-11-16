@@ -1,2 +1,3 @@
 config/config.yml
 tmp/unicorn.pid
+*.swp
