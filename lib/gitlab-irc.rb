@@ -54,16 +54,16 @@ post '/' do
     when 'push'
       json['commits'].each do |commit|
         commit_message = commit['message'].gsub(/\n/," ")
-        say "[#{json['repository']['name'].capitalize}] #{commit['author']['name']} | New Commit: #{commit_message}"
+        say "[#{json['repository']['name']}] #{commit['author']['name']} | New Commit: #{commit_message}"
         say "           View Commit: #{commit['url']}"
       end
     when 'tag_push'
-      say "[#{json['repository']['name'].capitalize}] #{json['user_name']} | New Tag: #{json['ref']}"
+      say "[#{json['repository']['name']}] #{json['user_name']} | New Tag: #{json['ref']}"
     when 'issue'
-      say "[#{json['repository']['name'].capitalize}] #{json['user_name']} | New Issue: #{json['object_attributes']['title']}"
+      say "[#{json['repository']['name']}] #{json['user_name']} | New Issue: #{json['object_attributes']['title']}"
       say "           View Issue: #{json['object_attributes']['url']}"
     when 'merge_request'
-      say "[#{json['repository']['name'].capitalize}] #{json['user_name']} | New Merge Request: #{json['object_attributes']['title']}"
+      say "[#{json['repository']['name']}] #{json['user_name']} | New Merge Request: #{json['object_attributes']['title']}"
       say "           View Request: #{json['object_attributes']['url']}"
     end
 
