@@ -1,6 +1,9 @@
 IRC_HOST: 'irc.freenode.com'
 IRC_PORT: 6667
+# Uncomment the below line to provide a server password
+# IRC_PASSWORD: 'Secret_Password'
 SSL: false
+# To join a password protected channel, append the password after the channel name. ex. #mychannel mypassword
 IRC_CHANNELS: ['#gitlab-irc']
 IRC_NICK: 'GitLab'
 IRC_REALNAME: 'GitLabBot'

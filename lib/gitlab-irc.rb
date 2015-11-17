@@ -10,6 +10,9 @@ $bot = Cinch::Bot.new do
   configure do |c|
     c.server = $config['IRC_HOST']
     c.port = $config['IRC_PORT']
+    if $config['IRC_PASSWORD']
+      c.password = $config['IRC_PASSWORD']
+    end  
     if $config['SSL'] == true
         c.ssl.use = true
     end
