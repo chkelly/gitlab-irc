@@ -1,12 +1,20 @@
 gitlab-irc
 ==========
 
-A lightweight gitlab irc bot that announces commit messages and supports the ability to connect to an irc server over ssl.
+Summary
+-------
+A lightweight gitlab irc bot that announces gitlab project notifications via webhooks.
+
+Supports
+--------
+* Connecting to an IRC server over SSL
+* Authing with Nickserv
+* Support for announcing Commits, Merge Requests, Tags, and Issues. 
 
 Requirements
 ------------
-Tested on Ruby 2.2.3
-Tested with Gitlab CE 8.1.4
+* Tested on Ruby 2.2.3
+* Tested with Gitlab CE 8.1.4
 
 
 Installation
@@ -25,10 +33,10 @@ You can use the config.yml.example file that is provided to configure your conne
 Once completed, you can start the server using the following commands
 ```bash
 cd gitlab-irc;
-unicorn -c config/unicorn.conf -D
+bundle exec unicorn -c config/unicorn.conf -D
 ```
 
-You can then configure your post commit web hooks to
+Within Gitlab CE, select a project, then go to Settings -> Hooks, and enter in the below. Check all the boxes.
 ```bash
 http://localhost:5000
 ```
