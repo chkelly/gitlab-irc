@@ -5,31 +5,46 @@ require 'yaml'
 require 'cinch'
 require 'cinch/plugins/identify'
 
-$config = YAML.load(File.read('./config/config.yml'))
+def get_config(key)
+  config_file = './config/config.yml'
+  if File.exist? config_file
+    config = YAML.load(File.read(config_file))
+    return config[key]
+  else
+    if ENV[key]
+      return ENV[key]
+    else
+      return nil
+    end
+  end
+end
+
+unless get_config('IRC_HOST') && get_config('IRC_CHANNELS')
+  raise "You must set IRC_HOST and IRC_CHANNELS in either the config file or environment variables"
+end
+
 $bot = Cinch::Bot.new do
   configure do |c|
-    c.server = $config['IRC_HOST']
-    c.port = $config['IRC_PORT']
-    if $config['IRC_PASSWORD']
-      c.password = $config['IRC_PASSWORD']
-    end  
-    if $config['SSL'] == true
-        c.ssl.use = true
+    c.server = get_config('IRC_HOST')
+    c.port = get_config('IRC_PORT') || 6667
+    if get_config('IRC_PASSWORD')
+      c.password = get_config('IRC_PASSWORD')
     end
-    c.nick = $config['IRC_NICK']
-    c.user = $config['IRC_NICK']
-    c.realname = $config['IRC_REALNAME']
-    if $config['IRC_USER_NAME'] && $config['IRC_USER_PASSWORD']
+    c.ssl.use = get_config('DEBUG') || false
+    c.nick = get_config('IRC_NICK') || 'GitLab'
+    c.user = get_config('IRC_NICK') || 'GitLab'
+    c.realname = get_config('IRC_REALNAME') || 'GitLabBot'
+    if get_config('IRC_USER_NAME') && get_config('IRC_USER_PASSWORD')
       c.plugins.plugins = [Cinch::Plugins::Identify]
       c.plugins.options[Cinch::Plugins::Identify] = {
-        :username => $config['IRC_USER_NAME'],
-        :password => $config['IRC_USER_PASSWORD'],
+        :username => get_config('IRC_USER_NAME'),
+        :password => get_config('IRC_USER_PASSWORD'),
         :type     => :nickserv
       }
     end
-    c.channels = $config['IRC_CHANNELS']
+    c.channels = get_config('IRC_CHANNELS').to_a
     c.delay_joins = 10
-    c.verbose = $config['DEBUG']
+    c.verbose = get_config('DEBUG') || false
   end
 
   on :message, "hello" do |m|
