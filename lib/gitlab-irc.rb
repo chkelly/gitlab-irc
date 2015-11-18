@@ -12,7 +12,7 @@ def get_config(key)
     return config[key]
   else
     if ENV[key]
-      return ENV[key]
+      return YAML.load(ENV[key])
     else
       return nil
     end
@@ -42,7 +42,7 @@ $bot = Cinch::Bot.new do
         :type     => :nickserv
       }
     end
-    c.channels = get_config('IRC_CHANNELS').to_a
+    c.channels = get_config('IRC_CHANNELS')
     c.delay_joins = 10
     c.verbose = get_config('DEBUG') || false
   end
